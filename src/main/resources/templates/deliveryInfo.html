@@ -1,0 +1,37 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<header>
+  <h1>Balloon Order page - Delivery information</h1>
+</header>
+<div style="float: left; margin: 0 1.5%; width: 70%;">
+  <form th:method="POST" th:action="@{/BalloonOrder.do}" id="deliveryForm">
+      <div>
+          Client Name: <th:block th:text="${#request.getRemoteUser()}"></th:block>
+      </div>
+      <div>
+          <label for="date">Enter the order creation date:</label><br/>
+          <input type="datetime-local" id="date" name="dateCreated" required>
+      </div>
+      <input type="submit" value="Next" form="deliveryForm">
+  </form>
+</div>
+<aside style=" float: right;display:inline-block;margin: -10% 20% 50% 0%; width: 30%">
+    <table>
+        <tr>
+            <th colspan="2">
+                Your Order Status
+            </th>
+        </tr>
+        <tr>
+            <td><b>Balloon Color</b></td>
+            <td><th:block th:text="${session.color}"></th:block></td>
+        </tr>
+        <tr>
+            <td><b>Balloon Size</b></td>
+            <td><th:block th:text="${session.size}"></th:block></td>
+        </tr>
+    </table>
+</aside>
+<div>
+
+</div>
+</th:block>

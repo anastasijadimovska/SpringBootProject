@@ -1,0 +1,50 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <form th:action="@{/balloons/add}" th:method="POST" >
+        <div>
+          <input type="hidden" name="id" th:value="(${balloon != null} ? ${balloon.getId()} : '')"/>
+        </div>
+        <div class="form-group">
+          <label for="name">Balloon name</label>
+          <input type="text"
+                 class="form-control"
+                 id="name" name="name"
+                 th:value="(${balloon != null} ? ${balloon.getName()} : '')"
+                 required
+                 placeholder="Enter product name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text"
+                 class="form-control"
+                 id="description" name="description"
+                 th:value="(${balloon} != null ? ${balloon.getDescription()} : '')"
+                 required
+                 placeholder="Enter product name">
+        </div>
+        <div class="form-group">
+          <label>Manufacturer</label>
+          <select name="manufacturer" class="form-control">
+            <option th:if="${balloon != null}"
+                    th:selected="${balloon.getManufacturer() != null
+                                && balloon.getManufacturer().getId() == man.getId()}"
+                    th:each="man : ${manufacturers}"
+                    th:text="${man.getName()}"
+                    th:value="${man.getId()}">
+            </option>
+            <option th:if="${balloon == null}"
+                    th:each="man : ${manufacturers}"
+                    th:text="${man.getName()}"
+                    th:value="${man.getId()}">
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a type="button" class="btn btn-primary" href="/balloons">Back</a>
+      </form>
+    </div>
+  </div>
+</div>
+</th:block>

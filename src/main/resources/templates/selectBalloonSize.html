@@ -1,0 +1,26 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<div style="float: left; margin: 0 1.5%; width: 70%;">
+  <h2>Choose balloon size:</h2>
+  <form th:method="POST" th:action="@{/selectBalloon}">
+  <input type="radio" name="size" value="Small"> Small <br/>
+  <input type="radio" name="size" value="Medium"> Medium <br/>
+  <input type="radio" name="size" value="Big"> Big <br/>
+  <input type="radio" name="size" value="Extra Big"> Extra Big <br/>
+  <br/>
+  <input type="submit" value="Submit">
+  </form>
+</div>
+<aside style=" float: right;display:inline-block;margin: -15% 20% 50% 0%; width: 30%">
+  <table>
+    <tr>
+      <th colspan="2">
+        Your Order Status
+      </th>
+    </tr>
+    <tr>
+      <td><b>Balloon Type</b></td>
+      <td><th:block th:text="${session.color}"></th:block></td>
+    </tr>
+  </table>
+</aside>
+</th:block>

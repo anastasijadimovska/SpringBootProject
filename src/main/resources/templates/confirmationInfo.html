@@ -1,0 +1,46 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<header>
+  <h1> Balloon Order page - Order confirmation </h1>
+</header>
+<table>
+  <tr>
+    <th colspan="2">
+      Your Order Status
+    </th>
+  </tr>
+  <tr>
+  <td><b>Client Name</b></td>
+  <td><th:block th:text="${#request.getRemoteUser()}"></th:block></td>
+  </tr>
+  <tr>
+  <td><b>Client IP Address</b></td>
+  <td><th:block th:text="${ipAddress}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Client Browser</b></td>
+    <td><th:block th:text="${clientBrowser}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Balloon Color</b></td>
+    <td><th:block th:text="${session.color}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Balloon Size</b></td>
+    <td><th:block th:text="${session.size}"></th:block></td>
+  </tr>
+
+</table>
+
+<form th:method="get" th:action="@{/logout}">
+  <input type="submit" value="Log out">
+</form>
+<div>
+  <br>
+  <form th:method="GET" th:action="@{/orders}">
+    <input type="submit" value="List all orders">
+  </form>
+  <form th:method="POST" th:action="@{/orders/newOrder}">
+    <input type="submit" value="New Order">
+  </form>
+</div>
+</th:block>

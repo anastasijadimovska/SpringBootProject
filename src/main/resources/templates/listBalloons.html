@@ -1,0 +1,27 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<header>
+    <h1>Welcome to out Balloon Shop App</h1>
+</header>
+<form th:method="post" th:action="@{/balloons}" id="submitForm" name="submitForm" ></form>
+<h2>Choose balloon color:</h2>
+<div th:each="balloon : ${balloons}">
+    <input type="radio" id="color" name="color" th:value="${balloon.name}" form="submitForm">
+    <th:block th:text="${balloon.name}"></th:block>
+    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <form th:method="DELETE" th:action="@{/balloons/delete/{id} (id=${balloon.getId()})}">
+            <button type="submit"><i>Delete</i></button>
+        </form>
+    </th:block>
+    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <form th:method="post" th:action="@{'/balloons/edit-form/{id}' (id=${balloon.getId()})}">
+            <button type="submit"><i>Edit</i></button>
+        </form>
+    </th:block>
+</div>
+<br/>
+<input type="submit" form="submitForm" value="Submit">
+<th:block>
+    </br>
+    <a href="/balloons/add">Add new balloon</a>
+</th:block>
+</th:block>

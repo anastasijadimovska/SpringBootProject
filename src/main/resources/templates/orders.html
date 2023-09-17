@@ -1,0 +1,29 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<div>
+    <h1>SHOPPING CART</h1>
+    <form th:method="POST" th:action="@{/orders/filter}">
+        <input type="datetime-local" name="from">
+        <input type="datetime-local" name="to">
+        <input type="submit" value="Filter by date">
+    </form>
+</div>
+    <div>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Balloon name</th>
+                <th scope="col">Balloon size</th>
+                <th scope="col">Client userName</th>
+                <th scope="col">Order date</th>
+            </tr>
+            </thead>
+            <tbody th:each="order : ${orders}">
+            <th scope="row" th:text="${order.balloonColor}"></th>
+            <th scope="row" th:text="${order.balloonSize}"></th>
+            <th scope="row" th:text="${session.username}"></th>
+            <td th:text="${#temporals.format(order.getDateCreated(), 'dd-MM-yyyy HH:mm:ss')}"></td>
+            </tbody>
+        </table>
+    </div>
+    <button href="/BalloonOrder.do">Back</button>
+</th:block>
